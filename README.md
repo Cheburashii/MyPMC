@@ -28,7 +28,7 @@ A tutorial project, attempt at an architecture design and shtuff.
 
 # Presentation #
 * *viewmodel*
-* views or tempaltes
+* views or templates
 * client-side code
 * input validation
 
@@ -82,7 +82,7 @@ A tutorial project, attempt at an architecture design and shtuff.
         * getAll
         * getById
         * insert
-        * delete
+        * remove
         * update
     * PropertyDataAccess : BaseDataAccess
         * getVacantByDate(from, to)
@@ -107,6 +107,6 @@ A tutorial project, attempt at an architecture design and shtuff.
         * add/update template
         * details template
     * account templates
-        * index template
+        * index templates
             - /bookings
             - /properties/add
