@@ -1,25 +1,66 @@
+const sqlite3 = require('sqlite3');
 module.exports = class Connection {
     constructor(connectionString) {
-        throw new Error("Not implemented");
+        this.db =  new sqlite3.Database(connectionString);
     }
 
-    get() {
-        throw new Error("Not implemented");
+    get(query, values = []) {
+        return new Promise((res, rej) => {
+            this.db.get(query, values, (err, data) => {
+                if (err) {
+                    rej(err);
+                } else {
+                    res(data);
+                }
+            })
+        });
     }
 
-    all() {
-        throw new Error("Not implemented");
+    all(query, values = []) {
+        return new Promise((res, rej) => {
+            this.db.all(query, values, (err, data) => {
+                if (err) {
+                    rej(err);
+                } else {
+                    res(data);
+                }
+            })
+        });
     }
 
-    run() {
-        throw new Error("Not implemented");
+    run(query) {
+        return new Promise((res, rej) => {
+            this.db.run(query, (err,) => {
+                if (err) {
+                    rej(err);
+                } else {
+                    res();
+                }
+            })
+        });
     }
 
-    exec() {
-        throw new Error("Not implemented");
+    exec(queries) {
+        return new Promise((res, rej) => {
+            this.db.exec(queries, (err) => {
+                if (err) {
+                    rej(err);
+                } else {
+                    res();
+                }
+            })
+        })
     }
 
     close() {
-        throw new Error("Not implemented");
+        return new Promise((res, rej) => {
+            this.db.close((err) => {
+                if (err) {
+                    rej(err);
+                } else {
+                    res();
+                }
+            })
+        })
     }
 };
