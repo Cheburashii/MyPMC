@@ -78,7 +78,11 @@ describe("DataMapper", () => {
     });
 
     describe("#mapFromRow", function () {
-        const mapper = new DataMapper(definitions);
+        let mapper;
+
+        before(() => {
+            mapper = new DataMapper(definitions);
+        });
 
         it("should throw if incorrect definition name is passed", () => {
             try {
@@ -162,7 +166,11 @@ describe("DataMapper", () => {
     });
 
     describe("#mapToArgs", () => {
-        const mapper = new DataMapper(definitions);
+        let mapper;
+
+        before(() => {
+            mapper = new DataMapper(definitions);
+        });
 
         it("should throw if incorrect definition name is passed", () => {
             try {
