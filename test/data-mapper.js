@@ -43,41 +43,40 @@ const dataTypeTestDefinition = {
         floatField: {
             column: "floatColumn",
             type: DataType.FLOAT
-        },
+        }
     }
-}
+};
 
 const definitions = {
     implicitMapping: implicitMappingTestDefinition,
     dataTypeMapping: dataTypeTestDefinition
 };
 
-
 describe("DataMapper", () => {
     it("should throw if constructed with falsy or empty definitions", () => {
         try {
             const mapper = new DataMapper();
-            throw new AssertionError({ message: "Expected constructor to throw when definitions is undefined" })
+            throw new AssertionError({message: "Expected constructor to throw when definitions is undefined"});
         } catch (e) {
             // test passes
         }
 
         try {
             const mapper = new DataMapper(null);
-            throw new AssertionError({ message: "Expected constructor to throw when definitions is null" })
+            throw new AssertionError({message: "Expected constructor to throw when definitions is null"});
         } catch (e) {
             // test passes
         }
 
         try {
             const mapper = new DataMapper({});
-            throw new AssertionError({ message: "Expected constructor to throw when definitions is empty" })
+            throw new AssertionError({message: "Expected constructor to throw when definitions is empty"});
         } catch (e) {
             // test passes
         }
     });
 
-    describe("#mapFromRow", function () {
+    describe("#mapFromRow", function() {
         let mapper;
 
         before(() => {
@@ -87,7 +86,7 @@ describe("DataMapper", () => {
         it("should throw if incorrect definition name is passed", () => {
             try {
                 mapper.mapFromRow("non-existent", {});
-                throw new AssertionError({ message: "Expected constructor to throw." })
+                throw new AssertionError({message: "Expected constructor to throw."});
             } catch (e) {
                 // test passes
             }
@@ -151,7 +150,7 @@ describe("DataMapper", () => {
             });
 
             assert.strictEqual(result.implicitColumn, "implicitColumnValue", "Expected to map known implicitColumn");
-            assert.equal(Object.keys(result).length, 1, "Expected result to have only one field")
+            assert.equal(Object.keys(result).length, 1, "Expected result to have only one field");
         });
 
         it("should ignore unknown columns", () => {
@@ -175,7 +174,7 @@ describe("DataMapper", () => {
         it("should throw if incorrect definition name is passed", () => {
             try {
                 mapper.mapToArgs("non-existent", {}, []);
-                throw new AssertionError({ message: "Expected constructor to throw." })
+                throw new AssertionError({message: "Expected constructor to throw."});
             } catch (e) {
                 // test passes
             }
@@ -186,7 +185,6 @@ describe("DataMapper", () => {
             assert.equal(result.length, 0, "Expected returned array to have no items.");
         });
 
-
         it("should map fields implicitly", () => {
             const result = mapper.mapToArgs("implicitMapping", {
                 implicitColumn: "implicitColumnValue",
@@ -194,11 +192,11 @@ describe("DataMapper", () => {
                 implicitDataType: "implicitDataTypeColumnValue",
                 implicitColumnFromString: "implicitColumnFromStringValue"
             }, [
-                    "implicitColumn",
-                    "implicitColumnName",
-                    "implicitDataTypeColumn",
-                    "_implicitColumnFromString"
-                ]);
+                "implicitColumn",
+                "implicitColumnName",
+                "implicitDataTypeColumn",
+                "_implicitColumnFromString"
+            ]);
 
             // TODO: split into multiple smaller tests for clarity
             assert.strictEqual(result[0], "implicitColumnValue",
@@ -223,13 +221,13 @@ describe("DataMapper", () => {
                 dateField: date,
                 dateTimeField: dateTime
             }, [
-                    "integerColumn",
-                    "floatColumn",
-                    "stringColumn",
-                    "booleanColumn",
-                    "dateColumn",
-                    "dateTimeColumn"
-                ]);
+                "integerColumn",
+                "floatColumn",
+                "stringColumn",
+                "booleanColumn",
+                "dateColumn",
+                "dateTimeColumn"
+            ]);
 
             // TODO: split into multiple smaller tests for clarity
             assert.strictEqual(result[0], 1,

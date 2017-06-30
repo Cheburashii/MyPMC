@@ -16,7 +16,7 @@ describe("SQLiteQueryBuilder", () => {
             } catch (error) {
                 return true;
             }
-            throw new AssertionError({ message: "Expected SQLiteQueryBuilder#buildInsert to throw an error" });
+            throw new AssertionError({message: "Expected SQLiteQueryBuilder#buildInsert to throw an error"});
         });
 
         it("should throw if table is null", () => {
@@ -25,7 +25,7 @@ describe("SQLiteQueryBuilder", () => {
             } catch (error) {
                 return true;
             }
-            throw new AssertionError({ message: "Expected SQLiteQueryBuilder#buildInsert to throw an error" });
+            throw new AssertionError({message: "Expected SQLiteQueryBuilder#buildInsert to throw an error"});
         });
 
         it("should throw if table is a whitespace string", () => {
@@ -34,7 +34,7 @@ describe("SQLiteQueryBuilder", () => {
             } catch (error) {
                 return true;
             }
-            throw new AssertionError({ message: "Expected SQLiteQueryBuilder#buildInsert to throw an error" });
+            throw new AssertionError({message: "Expected SQLiteQueryBuilder#buildInsert to throw an error"});
         });
 
         it("should throw if columns is null", () => {
@@ -43,7 +43,7 @@ describe("SQLiteQueryBuilder", () => {
             } catch (error) {
                 return true;
             }
-            throw new AssertionError({ message: "Expected SQLiteQueryBuilder#buildInsert to throw an error" });
+            throw new AssertionError({message: "Expected SQLiteQueryBuilder#buildInsert to throw an error"});
         });
 
         it("should throw if columns is empty", () => {
@@ -52,7 +52,7 @@ describe("SQLiteQueryBuilder", () => {
             } catch (error) {
                 return true;
             }
-            throw new AssertionError({ message: "Expected SQLiteQueryBuilder#buildInsert to throw an error" });
+            throw new AssertionError({message: "Expected SQLiteQueryBuilder#buildInsert to throw an error"});
         });
 
         it("should produce insert statement for multiple columns", () => {
@@ -75,7 +75,7 @@ describe("SQLiteQueryBuilder", () => {
             } catch (error) {
                 return true;
             }
-            throw new AssertionError({ message: "Expected SQLiteQueryBuilder#buildInsert to throw an error" });
+            throw new AssertionError({message: "Expected SQLiteQueryBuilder#buildInsert to throw an error"});
         });
 
         it("should throw if table is null", () => {
@@ -84,7 +84,7 @@ describe("SQLiteQueryBuilder", () => {
             } catch (error) {
                 return true;
             }
-            throw new AssertionError({ message: "Expected SQLiteQueryBuilder#buildInsert to throw an error" });
+            throw new AssertionError({message: "Expected SQLiteQueryBuilder#buildInsert to throw an error"});
         });
 
         it("should throw if table is a whitespace string", () => {
@@ -93,7 +93,7 @@ describe("SQLiteQueryBuilder", () => {
             } catch (error) {
                 return true;
             }
-            throw new AssertionError({ message: "Expected SQLiteQueryBuilder#buildInsert to throw an error" });
+            throw new AssertionError({message: "Expected SQLiteQueryBuilder#buildInsert to throw an error"});
         });
 
         it("should build an unconditional delete when condition is falsy", () => {
@@ -120,7 +120,7 @@ describe("SQLiteQueryBuilder", () => {
             } catch (error) {
                 return true;
             }
-            throw new AssertionError({ message: "Expected SQLiteQueryBuilder#buildUpdate to throw an error" });
+            throw new AssertionError({message: "Expected SQLiteQueryBuilder#buildUpdate to throw an error"});
         });
 
         it("should throw if table is null", () => {
@@ -129,7 +129,7 @@ describe("SQLiteQueryBuilder", () => {
             } catch (error) {
                 return true;
             }
-            throw new AssertionError({ message: "Expected SQLiteQueryBuilder#buildUpdate to throw an error" });
+            throw new AssertionError({message: "Expected SQLiteQueryBuilder#buildUpdate to throw an error"});
         });
 
         it("should throw if table is a whitespace string", () => {
@@ -138,7 +138,7 @@ describe("SQLiteQueryBuilder", () => {
             } catch (error) {
                 return true;
             }
-            throw new AssertionError({ message: "Expected SQLiteQueryBuilder#buildUpdate to throw an error" });
+            throw new AssertionError({message: "Expected SQLiteQueryBuilder#buildUpdate to throw an error"});
         });
 
         it("should throw if columns is null", () => {
@@ -147,7 +147,7 @@ describe("SQLiteQueryBuilder", () => {
             } catch (error) {
                 return true;
             }
-            throw new AssertionError({ message: "Expected SQLiteQueryBuilder#buildUpdate to throw an error" });
+            throw new AssertionError({message: "Expected SQLiteQueryBuilder#buildUpdate to throw an error"});
         });
 
         it("should throw if columns is empty", () => {
@@ -156,7 +156,7 @@ describe("SQLiteQueryBuilder", () => {
             } catch (error) {
                 return true;
             }
-            throw new AssertionError({ message: "Expected SQLiteQueryBuilder#buildUpdate to throw an error" });
+            throw new AssertionError({message: "Expected SQLiteQueryBuilder#buildUpdate to throw an error"});
         });
 
         it("should build a single-column unconditional update when condition is falsy", () => {
@@ -199,7 +199,7 @@ describe("SQLiteQueryBuilder", () => {
             } catch (error) {
                 return true;
             }
-            throw new AssertionError({ message: "Expected SQLiteQueryBuilder#buildSelect to throw an error" });
+            throw new AssertionError({message: "Expected SQLiteQueryBuilder#buildSelect to throw an error"});
         });
 
         it("should throw if table is null", () => {
@@ -208,7 +208,7 @@ describe("SQLiteQueryBuilder", () => {
             } catch (error) {
                 return true;
             }
-            throw new AssertionError({ message: "Expected SQLiteQueryBuilder#buildSelect to throw an error" });
+            throw new AssertionError({message: "Expected SQLiteQueryBuilder#buildSelect to throw an error"});
         });
 
         it("should throw if table is a whitespace string", () => {
@@ -217,7 +217,7 @@ describe("SQLiteQueryBuilder", () => {
             } catch (error) {
                 return true;
             }
-            throw new AssertionError({ message: "Expected SQLiteQueryBuilder#buildSelect to throw an error" });
+            throw new AssertionError({message: "Expected SQLiteQueryBuilder#buildSelect to throw an error"});
         });
 
         it("should produce unconditional select * statement when cols is falsy", () => {
@@ -260,7 +260,6 @@ describe("SQLiteQueryBuilder", () => {
             assert.equal(actual, expected);
         });
     });
-
 
     function normalize(str) {
         return str.replace(/,/, ", ").replace(/[\r\n\s\t]+/gmi, " ").trim();

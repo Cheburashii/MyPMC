@@ -1,7 +1,8 @@
-const sqlite3 = require('sqlite3');
+const sqlite3 = require("sqlite3");
+
 module.exports = class Connection {
     constructor(connectionString) {
-        this.db =  new sqlite3.Database(connectionString);
+        this.db = new sqlite3.Database(connectionString);
     }
 
     get(query, values = []) {
@@ -12,7 +13,7 @@ module.exports = class Connection {
                 } else {
                     res(data);
                 }
-            })
+            });
         });
     }
 
@@ -24,19 +25,19 @@ module.exports = class Connection {
                 } else {
                     res(data);
                 }
-            })
+            });
         });
     }
 
     run(query) {
         return new Promise((res, rej) => {
-            this.db.run(query, (err,) => {
+            this.db.run(query, (err) => {
                 if (err) {
                     rej(err);
                 } else {
                     res();
                 }
-            })
+            });
         });
     }
 
@@ -48,8 +49,8 @@ module.exports = class Connection {
                 } else {
                     res();
                 }
-            })
-        })
+            });
+        });
     }
 
     close() {
@@ -60,7 +61,7 @@ module.exports = class Connection {
                 } else {
                     res();
                 }
-            })
-        })
+            });
+        });
     }
 };

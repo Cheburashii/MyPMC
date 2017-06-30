@@ -96,7 +96,7 @@ describe("Connection", () => {
             const s1 = c.exec("CREATE TABLE test_table(col1 INTEGER); INSERT INTO test_table(col1) VALUES(1), (2);");
             const s2 = c.get("SELECT * FROM test_table;");
             return s2.then((row) => {
-                assert(row.col1, "Connection#get should return a single object with col1 property.")
+                assert(row.col1, "Connection#get should return a single object with col1 property.");
                 return c.close();
             }).catch((err) => {
                 c.close();
@@ -131,7 +131,7 @@ describe("Connection", () => {
             const s1 = c.exec("CREATE TABLE test_table(col1 INTEGER); INSERT INTO test_table(col1) VALUES(1), (2);");
             const s2 = c.all("SELECT * FROM test_table;");
             return s2.then((row) => {
-                assert.equal(row.length, 2, "Connection#all should return multiple objects.")
+                assert.equal(row.length, 2, "Connection#all should return multiple objects.");
                 return c.close();
             }).catch((err) => {
                 c.close();

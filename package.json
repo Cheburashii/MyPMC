@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "setup": "node databaseSetupScripts/setup.js",
+    "seed": "node databaseSetupScripts/seed.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,7 @@
     "sqlite3": "^3.1.8"
   },
   "devDependencies": {
+    "eslint": "^4.1.1",
     "mocha": "^3.4.2"
   }
 }
