@@ -1,4 +1,4 @@
-const DataType = require("data-type");
+const DataType = require("./data-type");
 
 module.exports = class DataMapper {
     constructor(definitions) {

@@ -113,7 +113,7 @@ describe("DataMapper", () => {
                 "Expected _implicitColumnFromString => implicitColumnFromString mapping when string provided instead of options");
         });
 
-        if ("should map datatypes properly", () => {
+        it("should map datatypes properly", () => {
             const date = new Date(2017, 1, 1);
             const dateTime = new Date(2017, 1, 1, 1, 1, 1);
 
