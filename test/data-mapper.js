@@ -1,5 +1,5 @@
-const DataType = require("../data-type");
-const DataMapper = require("../data-mapper");
+const DataType = require("../model/data-type");
+const DataMapper = require("../model/data-mapper");
 const assert = require("assert");
 const AssertionError = assert.AssertionError;
 

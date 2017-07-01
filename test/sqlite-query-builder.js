@@ -1,4 +1,4 @@
-const builder = require("../sqlite-query-builder");
+const builder = require("../model/sqlite-query-builder");
 const assert = require("assert");
 const AssertionError = assert.AssertionError;
 

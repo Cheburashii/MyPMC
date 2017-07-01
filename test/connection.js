@@ -1,4 +1,4 @@
-const Connection = require("../connection");
+const Connection = require("../model/connection");
 const assert = require("assert");
 const AssertionError = assert.AssertionError;
 

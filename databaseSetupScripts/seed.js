@@ -1,5 +1,5 @@
 const fs = require("fs");
-const Connection = require("../connection");
+const Connection = require("../model/connection");
 const join = require("path").join;
 
 const database = new Connection(join(__dirname, "../database.sqlite3"));
