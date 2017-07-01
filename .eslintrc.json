@@ -8,10 +8,6 @@
         "accessor-pairs": "error",
         "array-bracket-spacing": "error",
         "array-callback-return": "error",
-        "arrow-parens": [
-            "error",
-            "always"
-        ],
         "arrow-spacing": [
             "error",
             {
