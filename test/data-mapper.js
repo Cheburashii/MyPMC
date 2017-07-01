@@ -54,29 +54,39 @@ const definitions = {
 
 describe("DataMapper", () => {
     it("should throw if constructed with falsy or empty definitions", () => {
+        let error = null;
         try {
             const mapper = new DataMapper();
-            throw new AssertionError({message: "Expected constructor to throw when definitions is undefined"});
         } catch (e) {
-            // test passes
+            error = e;
+        }
+
+        if (!error) {
+            throw new AssertionError({ message: "Expected constructor to throw when definitions is undefined." });
         }
 
         try {
             const mapper = new DataMapper(null);
-            throw new AssertionError({message: "Expected constructor to throw when definitions is null"});
         } catch (e) {
-            // test passes
+            error = e;
+        }
+
+        if (!error) {
+            throw new AssertionError({ message: "Expected constructor to throw when definitions is null" });
         }
 
         try {
             const mapper = new DataMapper({});
-            throw new AssertionError({message: "Expected constructor to throw when definitions is empty"});
         } catch (e) {
-            // test passes
+            error = e;
+        }
+
+        if (!error) {
+            throw new AssertionError({ message: "Expected constructor to throw when definitions is empty" });
         }
     });
 
-    describe("#mapFromRow", function() {
+    describe("#mapFromRow", function () {
         let mapper;
 
         before(() => {
@@ -84,11 +94,15 @@ describe("DataMapper", () => {
         });
 
         it("should throw if incorrect definition name is passed", () => {
+            let error = null;
             try {
-                mapper.mapFromRow("non-existent", {});
-                throw new AssertionError({message: "Expected constructor to throw."});
+                mapper.mapFromRow("non-existent", {});                
             } catch (e) {
-                // test passes
+                error = e;
+            }
+
+            if(!error) {
+                throw new AssertionError({ message: "Expected constructor to throw." });
             }
         });
 
@@ -172,11 +186,15 @@ describe("DataMapper", () => {
         });
 
         it("should throw if incorrect definition name is passed", () => {
+            let error = null;
             try {
                 mapper.mapToArgs("non-existent", {}, []);
-                throw new AssertionError({message: "Expected constructor to throw."});
             } catch (e) {
-                // test passes
+                error = e;
+            }
+
+            if (!error) {
+                throw new AssertionError({ message: "Expected constructor to throw." });
             }
         });
 
