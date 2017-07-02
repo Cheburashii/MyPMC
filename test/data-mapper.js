@@ -6,7 +6,7 @@ const AssertionError = assert.AssertionError;
 const implicitMappingTestDefinition = {
     table: "implicitMappingTest",
     fields: {
-        implicitColumn: {},
+        implicitColumn: "implicitColumn",
         implicitColumnName: {
             type: DataType.STRING
         },
@@ -36,7 +36,7 @@ const dataTypeTestDefinition = {
             column: "dateColumn",
             type: DataType.DATE
         },
-        datetimeField: {
+        dateTimeField: {
             column: "dateTimeColumn",
             type: DataType.DATE_TIME
         },
@@ -62,7 +62,7 @@ describe("DataMapper", () => {
         }
 
         if (!error) {
-            throw new AssertionError({ message: "Expected constructor to throw when definitions is undefined." });
+            throw new AssertionError({message: "Expected constructor to throw when definitions is undefined."});
         }
 
         try {
@@ -72,7 +72,7 @@ describe("DataMapper", () => {
         }
 
         if (!error) {
-            throw new AssertionError({ message: "Expected constructor to throw when definitions is null" });
+            throw new AssertionError({message: "Expected constructor to throw when definitions is null"});
         }
 
         try {
@@ -82,11 +82,11 @@ describe("DataMapper", () => {
         }
 
         if (!error) {
-            throw new AssertionError({ message: "Expected constructor to throw when definitions is empty" });
+            throw new AssertionError({message: "Expected constructor to throw when definitions is empty"});
         }
     });
 
-    describe("#mapFromRow", function () {
+    describe("#mapFromRow", function() {
         let mapper;
 
         before(() => {
@@ -96,19 +96,14 @@ describe("DataMapper", () => {
         it("should throw if incorrect definition name is passed", () => {
             let error = null;
             try {
-                mapper.mapFromRow("non-existent", {});                
+                mapper.mapFromRow("non-existent", {});
             } catch (e) {
                 error = e;
             }
 
-            if(!error) {
-                throw new AssertionError({ message: "Expected constructor to throw." });
+            if (!error) {
+                throw new AssertionError({message: "Expected constructor to throw."});
             }
-        });
-
-        it("should map empty row to an empty object", () => {
-            const result = mapper.mapFromRow("implicitMapping", {});
-            assert.equal(Object.keys(result), 0, "Expected returned object to have no keys.");
         });
 
         it("should map column names implicitly", () => {
@@ -138,9 +133,9 @@ describe("DataMapper", () => {
                 integerColumn: 1,
                 floatColumn: 2.3,
                 stringColumn: "a string value",
-                booleanField: 1,
-                dateField: date.getTime(),
-                dateTimeField: dateTime.getTime()
+                booleanColumn: 1,
+                dateColumn: date.getTime(),
+                dateTimeColumn: dateTime.getTime()
             });
 
             // TODO: split into multiple smaller tests for clarity
@@ -194,7 +189,7 @@ describe("DataMapper", () => {
             }
 
             if (!error) {
-                throw new AssertionError({ message: "Expected constructor to throw." });
+                throw new AssertionError({message: "Expected constructor to throw."});
             }
         });
 
