@@ -1,4 +1,3 @@
-module.exports.STRING = "DataType.String";
 module.exports.INTEGER = "DataType.Integer";
 module.exports.FLOAT = "DataType.Float";
 module.exports.DATE = "DataType.Date";
