@@ -194,7 +194,7 @@ describe("DataMapper", () => {
         });
 
         it("should map empty object to an empty array", () => {
-            const result = mapper.mapFromRow("implicitMapping", {});
+            const result = mapper.mapToArgs("implicitMapping", {});
             assert.equal(result.length, 0, "Expected returned array to have no items.");
         });
 
