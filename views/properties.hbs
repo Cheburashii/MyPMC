@@ -1,0 +1,22 @@
+<table>
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>title</th>
+        <th>address</th>
+        <th>price</th>
+        <th>photo</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each this}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{title}}</td>
+            <td>{{address}}</td>
+            <td>{{price}}</td>
+            <td>{{photo}}</td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
