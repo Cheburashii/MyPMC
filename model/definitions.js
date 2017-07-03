@@ -1,7 +1,8 @@
-const DataTypes = require("data-type");
+const DataTypes = require("./data-type");
 module.exports.Property = {
     table: "properties",
     fields: {
+        id: "_id",
         title: "title",
         address: "address",
         price: "price",
@@ -11,6 +12,7 @@ module.exports.Property = {
 module.exports.Booking = {
     table: "bookings",
     fields: {
+        id: "_id",
         from: {
             column: "firstDate",
             type: DataTypes.DATE

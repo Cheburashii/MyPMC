@@ -1,10 +1,9 @@
-const DataMapper = require("data-mapper");
-const QueryBuilder = require("sqlite-query-builder");
-const Connection = require("connection");
+const DataMapper = require("./data-mapper");
+const QueryBuilder = require("./sqlite-query-builder");
 const ID_COLUMN = "_id";
 const DEFAULT_DEFINITION_NAME = "definition";
 
-class BaseDataAccess {
+module.exports = class BaseDAO {
     constructor(definition, connection) {
         if (!definition) throw new Error("BaseDataAccess can`t exist without a definition.");
         this.definition = definition;
@@ -33,4 +32,6 @@ class BaseDataAccess {
     remove(id) {
         return this.connection.run(QueryBuilder.buildDelete(this.definition.table), null, `${ID_COLUMN} = ?`, null);
     }
-}
+};
+
+module.exports.DEFAULT_DEFINITION_NAME = DEFAULT_DEFINITION_NAME;

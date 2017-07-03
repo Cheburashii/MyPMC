@@ -1,15 +1,15 @@
-module.exports = class SQLiteQueryBuilder {
+module.exports = {
 
-    static buildInsert(table, cols) {
+    buildInsert: (table, cols) => {
         if (!table || !table.trim()) {
             throw new Error("Table name can`t be empty.");
         } else if (!cols || cols.length === 0) {
             throw new Error("Cols names can`t be empty.");
         }
         return `INSERT INTO ${table}(${cols.join(", ")}) VALUES(${"?, ".repeat(cols.length).slice(0, -2)})`;
-    }
+    },
 
-    static buildUpdate(table, cols, condition) {
+    buildUpdate: (table, cols, condition) => {
         if (!table || !table.trim()) {
             throw new Error("Table name can`t be empty.");
         } else if (!cols || cols.length === 0) {
@@ -20,18 +20,18 @@ module.exports = class SQLiteQueryBuilder {
             query += ` WHERE ${condition}`;
         }
         return query;
-    }
+    },
 
-    static buildDelete(table, condition) {
+    buildDelete: (table, condition) => {
         if (!table || !table.trim()) {
             throw new Error("Table name can`t be empty.");
         }
         return `DELETE FROM ${table} ${condition
             ? `WHERE ${condition}`
             : ""}`;
-    }
+    },
 
-    static buildSelect(table, cols, condition, order) {
+    buildSelect: (table, cols, condition, order) => {
         if (!table || !table.trim()) {
             throw new Error("Table name can`t be empty.");
         }
