@@ -23,14 +23,14 @@ module.exports = class BaseDAO {
     }
 
     getById(id) {
-        return this.connection.get(QueryBuilder.buildSelect(this.definition.table), null, `${ID_COLUMN} = ?`, null)
+        return this.connection.get(QueryBuilder.buildSelect(this.definition.table, null, `${ID_COLUMN} = ?`), [id])
             .then((row) => {
                 return this.dataMapper.mapFromRow(DEFAULT_DEFINITION_NAME, row);
             });
     }
 
     remove(id) {
-        return this.connection.run(QueryBuilder.buildDelete(this.definition.table), null, `${ID_COLUMN} = ?`, null);
+        return this.connection.run(QueryBuilder.buildDelete(this.definition.table, null, `${ID_COLUMN} = ?`), [id]);
     }
 };
 

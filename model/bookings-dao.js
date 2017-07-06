@@ -7,11 +7,11 @@ module.exports = class BookingsDao extends BaseDAO {
         super(BookingDefinition, connection);
     }
 
-    getByPropertyId() {
-        return this.connection.all(QueryBuilder.buildSelect(this.definition.table, null, `${this.definition.fields.propertyId} = ?`, null))
+    getByPropertyId(id) {
+        return this.connection.all(QueryBuilder.buildSelect(this.definition.table, null, `${this.definition.fields.propertyId} = ?`, null), [id])
             .then((data) => {
-                return data.map((row) => {
-                    return this.dataMapper.mapFromRow(BaseDAO.DEFAULT_DEFINITION_NAME, row);
+                return data.map((rows) => {
+                    return this.dataMapper.mapFromRow(BaseDAO.DEFAULT_DEFINITION_NAME, rows);
                 });
             });
     }
