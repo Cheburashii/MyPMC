@@ -1,0 +1,21 @@
+Bookings:
+<table>
+    <thead>
+        <tr>
+            <th>From</th>
+            <th>To</th>
+            <th>Client Name</th>
+            <th>Client Phone</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each this}}
+            <tr>
+                <td>{{from}}</td>
+                <td>{{to}}</td>
+                <td>{{clientName}}</td>
+                <td>{{clientPhone}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
