@@ -41,11 +41,11 @@ module.exports = class DataMapper {
                     result[fieldKey] = row[field.column];
                 }
                 if (field.type) {
-                    const TypeConstructor = getTypeConstructor(field.type);
-                    if (TypeConstructor === Date) {
-                        result[fieldKey] = new TypeConstructor(result[fieldKey]);
+                    const typeConstructor = getTypeConstructor(field.type);
+                    if (typeConstructor === Date) {
+                        result[fieldKey] = new Date(result[fieldKey]);
                     } else {
-                        result[fieldKey] = TypeConstructor(result[fieldKey]);
+                        result[fieldKey] = typeConstructor(result[fieldKey]);
                     }
                 }
             }
@@ -54,6 +54,39 @@ module.exports = class DataMapper {
     }
 
     mapToArgs(definitionName, object, cols) {
-        throw new Error("Not implemented");
+        const definition = this.definitions[definitionName];
+        if (!definition) throw new Error("Unknown definition.");
+        if (!cols) cols = [];
+        let result = [];
+
+        cols.forEach(col => {
+            let fieldName = null;
+            let dataType = null;
+
+            for (let key in definition.fields) {
+                dataType = definition.fields[key].type;
+                if (definition.fields[key] === col || definition.fields[key].column === col || key === col) {
+                    fieldName = key;
+                    break;
+                }
+            }
+
+            if (!fieldName) throw new Error("Can't find field name for column " + col);
+
+            result.push(DataMapper.convertToSafeValue(object[fieldName], dataType));
+        });
+        return result;
+    }
+
+    static convertToSafeValue(value, dataType) {
+        switch (dataType) {
+            case DataType.BOOLEAN:
+                return value !== 0;
+            case DataType.DATE:
+            case DataType.DATE_TIME:
+                return value.getTime();
+            default:
+                return value;
+        }
     }
 };

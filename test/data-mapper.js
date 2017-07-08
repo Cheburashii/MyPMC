@@ -226,7 +226,7 @@ describe("DataMapper", () => {
             const date = new Date(2017, 1, 1);
             const dateTime = new Date(2017, 1, 1, 1, 1, 1);
 
-            const result = mapper.mapFromRow("dataTypeMapping", {
+            const result = mapper.mapToArgs("dataTypeMapping", {
                 integerField: 1,
                 floatField: 2.3,
                 stringField: "a string value",
