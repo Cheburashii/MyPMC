@@ -2,6 +2,7 @@ const DataMapper = require("./data-mapper");
 const QueryBuilder = require("./sqlite-query-builder");
 const ID_COLUMN = "_id";
 const DEFAULT_DEFINITION_NAME = "definition";
+const getColumnName = require("./definitions").getColumnName;
 
 module.exports = class BaseDAO {
     constructor(definition, connection) {
@@ -31,6 +32,29 @@ module.exports = class BaseDAO {
 
     remove(id) {
         return this.connection.run(QueryBuilder.buildDelete(this.definition.table, null, `${ID_COLUMN} = ?`), [id]);
+    }
+
+    add(data) {
+        let columns = [];
+        for (let key in this.definition.fields) {
+            let columnName = getColumnName(key, this.definition.fields[key]);
+            if (columnName === ID_COLUMN) continue;
+            columns.push(columnName);
+        }
+        let query = QueryBuilder.buildInsert(this.definition.table, columns);
+        return this.connection.run(query, this.dataMapper.mapToArgs(DEFAULT_DEFINITION_NAME, data, columns));
+    }
+
+    update(data) {
+        let condition = `${data.id} = ?`,
+            columns = [];
+        for (let key in this.definition.fields) {
+            let columnName = getColumnName(key, this.definition.fields[key]);
+            if (columnName === ID_COLUMN) continue;
+            columns.push(columnName);
+        }
+        let query = QueryBuilder.buildUpdate(this.definition.table, columns, condition);
+        return this.connection.run(query, this.dataMapper.mapToArgs(DEFAULT_DEFINITION_NAME, data, columns));
     }
 };
 

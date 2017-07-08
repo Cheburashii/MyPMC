@@ -26,3 +26,9 @@ module.exports.Booking = {
         propertyId: "property_id"
     }
 };
+module.exports.getColumnName = (key, field) => {
+    if (typeof field === "string") return field;
+    if (typeof field !== "object") throw new Error("Wrong data type of field");
+    if (field.column) return field.column;
+    return key;
+};

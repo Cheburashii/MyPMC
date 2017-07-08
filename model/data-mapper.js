@@ -1,4 +1,5 @@
 const DataType = require("./data-type");
+const getColumnName = require("./definitions").getColumnName;
 function getTypeConstructor(type) {
     switch (type) {
         case DataType.DATE:
@@ -29,24 +30,18 @@ module.exports = class DataMapper {
         let result = {};
         Object.keys(definition.fields).forEach((fieldKey) => {
             let field = definition.fields[fieldKey];
-            if (typeof field === "string") {
-                if (!row[field]) return;
-                result[fieldKey] = row[field];
-            } else if (typeof field === "object") {
-                if (!field.column) {
-                    if (!row[fieldKey]) return;
-                    result[fieldKey] = row[fieldKey];
+            let value = row[getColumnName(fieldKey, definition.fields[fieldKey])];
+            if (value) {
+                result[fieldKey] = value;
+            } else {
+                return;
+            }
+            if (typeof field === "object" && field.type) {
+                const typeConstructor = getTypeConstructor(field.type);
+                if (typeConstructor === Date) {
+                    result[fieldKey] = new Date(result[fieldKey]);
                 } else {
-                    if (!row[field.column]) return;
-                    result[fieldKey] = row[field.column];
-                }
-                if (field.type) {
-                    const typeConstructor = getTypeConstructor(field.type);
-                    if (typeConstructor === Date) {
-                        result[fieldKey] = new Date(result[fieldKey]);
-                    } else {
-                        result[fieldKey] = typeConstructor(result[fieldKey]);
-                    }
+                    result[fieldKey] = typeConstructor(result[fieldKey]);
                 }
             }
         });

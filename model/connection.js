@@ -29,13 +29,13 @@ module.exports = class Connection {
         });
     }
 
-    run(query) {
+    run(query, values) {
         return new Promise((res, rej) => {
-            this.db.run(query, (err) => {
+            this.db.run(query, values, function(err) {
                 if (err) {
                     rej(err);
                 } else {
-                    res();
+                    res(this.lastID);
                 }
             });
         });
