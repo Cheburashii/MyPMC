@@ -6,8 +6,8 @@
   "scripts": {
     "test": "mocha",
     "test-debug": "mocha --debug-brk",
-    "setup": "node databaseSetupScripts/setup.js",
-    "seed": "node databaseSetupScripts/seed.js"
+    "setup": "node database-scripts/setup.js",
+    "seed": "node database-scripts/seed.js"
   },
   "repository": {
     "type": "git",

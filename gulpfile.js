@@ -12,7 +12,7 @@ gulp.task("db:clear", (cb) => {
 
 gulp.task("db:create", ["db:clear"], (cb) => {
     const database = new Connection("database.sqlite3");
-    fs.readFile(join(__dirname, "databaseSetupScripts/setup.sql"), "utf8", (error, data) => {
+    fs.readFile(join(__dirname, "database-scripts/setup.sql"), "utf8", (error, data) => {
         database.exec(data)
             .then(() => {
                 console.log("Database created");
@@ -27,7 +27,7 @@ gulp.task("db:create", ["db:clear"], (cb) => {
 
 gulp.task("db:seed", ["db:create"], () => {
     const database = new Connection("database.sqlite3");
-    fs.readFile(join(__dirname, "databaseSetupScripts/seed.sql"), "utf8", (error, data) => {
+    fs.readFile(join(__dirname, "database-scripts/seed.sql"), "utf8", (error, data) => {
         database.exec(data)
             .then(() => {
                 console.log("Database seeded");
