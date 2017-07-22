@@ -21,7 +21,14 @@ module.exports = class PropertiesController {
     }
 
     addPUT(req, res, next) {
-        throw new Error("Not implemented");
+        this.dao.add(req.body)
+            .then(() => {
+                res.redirect("/properties");
+            })
+            .catch((err) => {
+                res.sendStatus(500);
+                console.log(err);
+            });
     }
 
     detailsGET(req, res, next) {
@@ -36,10 +43,25 @@ module.exports = class PropertiesController {
     }
 
     updatePOST(req, res, next) {
-        throw new Error("Not implemented");
+        req.body.id = req.params.id;
+        this.dao.update(req.body)
+            .then(() => {
+                res.redirect("/properties");
+            })
+            .catch((err) => {
+                res.sendStatus(500);
+                console.log(err);
+            });
     }
 
     removeDELETE(req, res, next) {
-        throw new Error("Not implemented");
+        this.dao.remove(req.body.id)
+            .then(() => {
+                res.redirect("/properties");
+            })
+            .catch((err) => {
+                res.sendStatus(500);
+                console.log(err);
+            });
     }
 };
