@@ -31,7 +31,7 @@ module.exports = class BaseDAO {
     }
 
     remove(id) {
-        return this.connection.run(QueryBuilder.buildDelete(this.definition.table, null, `${ID_COLUMN} = ?`), [id]);
+        return this.connection.run(QueryBuilder.buildDelete(this.definition.table, `${ID_COLUMN} = ?`), [id]);
     }
 
     add(data) {
