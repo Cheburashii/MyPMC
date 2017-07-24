@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS schema_version;
 CREATE TABLE schema_version(
     version INTEGER DEFAULT 0
 );
-INSERT INTO schema_version VALUES(1);
+INSERT INTO schema_version VALUES(2);
 
 DROP TABLE IF EXISTS properties;
 CREATE TABLE properties(

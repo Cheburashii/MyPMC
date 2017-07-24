@@ -10,27 +10,28 @@ database.get("SELECT version FROM schema_version").then(
     (row) => {
         currentVersion = row.version;
     }
-);
+).then(() => {
+    fs.readdir(join(__dirname, "updaters"), (err, fileNames) => {
+        let version = currentVersion;
+        let result = Promise.resolve();
 
-fs.readdir(join(__dirname, "updaters"), (err, fileNames) => {
-    const modules = fileNames.map((name) => {
-        return require(join(__dirname, "updaters", name));
+        let modules = fileNames.map((name) => {
+            return require(join(__dirname, "updaters", name));
+        }).filter((m) => {
+            return m.version > currentVersion;
+        }).sort((a, b) => {
+            return a.version - b.version;
+        }).forEach((Module) => {
+            result = result.then(() => {
+                version = Module.version;
+                return new Module(database).update();
+            });
+        });
+
+        result.then(() => {
+            return database.exec(`UPDATE schema_version SET version = ${version}`);
+        }).catch((e) => {
+            console.log("Error ", e);
+        });
     });
-
-    modules = modules.filter((m) => {
-        return m.version > currentVersion;
-    }).sort((a, b) => {
-        return a.version - b.version;
-    });
-
-    // modules.reduce((PrevModule, NextModule) => {
-    //     new PrevModule(database).update().then(NextModule);
-    // });
-
-    let result = Promise.resolve();
-    modules.forEach(function (Module) {
-        result = result.then(Module);
-    });
-    return result;
-    
 });
