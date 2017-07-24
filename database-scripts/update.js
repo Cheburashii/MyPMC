@@ -15,7 +15,8 @@ database.get("SELECT version FROM schema_version").then(
         let version = currentVersion;
         let result = Promise.resolve();
 
-        let modules = fileNames.map((name) => {
+        fileNames.map((name) => {
+            // eslint-disable-next-line global-require
             return require(join(__dirname, "updaters", name));
         }).filter((m) => {
             return m.version > currentVersion;
